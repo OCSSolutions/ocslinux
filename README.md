@@ -17,3 +17,11 @@ OCS Linux focuses on a Linux desktop and server that is up to date, fast, and us
 ## Upcoming Features
 
 * Server Focus: We plan on releasing a server-focused version of OCS Linux soon with a focus on performance and ease-of-use.
+
+## Sponsorship
+
+Primary sponsorship of this project is provided by [OCS Solutions](https://www.ocssolutions.com).
+
+## Contributing
+
+If you wish to contribute to this project, please email robert@jeweledwoods.com.
