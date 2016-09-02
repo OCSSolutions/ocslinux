@@ -4,7 +4,7 @@ OCS Linux focuses on a Linux desktop and server that is up to date, fast, and us
 
 ## Features 
 
-* Rolling Release: Never re-install your operating system again!  With OCS Linux, you always have the most up to date software available.
+* Rolling Release: Never re-install your operating system again!  You'll always have updated software available.
 * You're In Control: No forced updates
 * Private and Secure: The privacy and security of Linux
 * Desktop Focus: Everything that a typical user needs will be pre-installed, including:
