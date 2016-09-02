@@ -7,6 +7,7 @@ pv
 git-core
 subversion
 sudo
+ttf-liberation
 ttf-mscorefonts-installer
 playonlinux
 gdebi
@@ -25,5 +26,6 @@ firmware-bnx2x
 firmware-bnx2
 firmware-realtek
 intel-microcode
+pavucontrol
 
 
