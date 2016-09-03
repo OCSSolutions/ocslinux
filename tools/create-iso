@@ -1,0 +1,80 @@
+#!/bin/bash
+
+cwd="$PWD"
+
+while [[ $# -gt 1 ]]
+do
+key="$1"
+
+case $key in
+    -p|--preseed)
+    PRESEED="$2"
+    shift 
+    ;;
+    -s|--source-iso)
+    SOURCEISO="$2"
+    shift
+    ;;
+    -d|--dest-iso)
+    DESTISO="$2"
+    shift
+    ;;
+    -w|--work-dir)
+    WORKDIR="$2"
+    shift
+    ;;
+    *)
+    # Unknown option
+    ;;
+esac
+shift
+done
+
+echo "OCS Linux Create ISO Utility"
+echo
+echo Preseed File = "${PRESEED}"
+echo Source ISO File = "${SOURCEISO}"
+echo Destination ISO File = "${DESTISO}"
+echo Working Directory = "${WORKDIR}"
+echo
+
+mkdir $WORKDIR/loopdir -p
+mkdir $WORKDIR/cd -p
+
+mount -o loop $SOURCEISO $WORKDIR/loopdir
+
+echo 
+echo "Copying CD contents..."
+rsync -a -H --exclude=TRANS.TBL $WORKDIR/loopdir/ $WORKDIR/cd
+
+echo
+echo "Unmounting ISO..."
+umount $WORKDIR/loopdir
+
+echo
+echo "Updating initrd..."
+
+mkdir $WORKDIR/irmod -p
+cd $WORKDIR/irmod
+gzip -d < ../cd/install.amd/initrd.gz | cpio --extract --verbose --make-directories --no-absolute-filenames
+cp $PRESEED preseed.cfg
+find . | cpio -H newc --create --verbose | gzip -9 > ../cd/install.amd/initrd.gz
+cd ..
+rm -Rf irmod
+
+echo 
+echo "Updating MD5 sums..."
+cd $WORKDIR/cd
+md5sum `find -follow -type f` > md5sum.txt
+
+echo
+echo "Creating the ISO image..."
+cd $WORKDIR/cd
+genisoimage -o $DESTISO -r -J -no-emul-boot -boot-load-size 4 -boot-info-table -b isolinux/isolinux.bin -c isolinux/boot.cat .
+
+echo "All done!  Created ISO is now in ${DESTISO}."
+echo "The working directory needs to be manually cleared.""
+echo "For safety, this script will not clear it automatically."
+echo
+
+cd "$cwd"
