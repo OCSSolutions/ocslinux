@@ -1,0 +1,4 @@
+#!/bin/bash
+wget http://mirrors.kernel.org/ubuntu/pool/main/u/ubuntu-font-family-sources/ttf-ubuntu-font-family_0.80-0ubuntu2_all.deb
+sudo dpkg -i ttf-ubuntu-font-family_0.80-0ubuntu2_all.deb
+rm -f ttf-ubuntu-font-family_0.80-0ubuntu2_all.deb
