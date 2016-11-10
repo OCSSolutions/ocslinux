@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Ensure packages/built folder exists
+mkdir -p packages/built
+
+# Create skeleton package
+cd packages/ocslinux-skel
+rm -f ocslinux-skel-0.1_all.deb
+dpkg -b . ../built/ocslinux-skel-0.1_all.deb
+
+echo "All packages built and contained in packages/built."
+
