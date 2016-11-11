@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Installs a local copy to /ocslinux from the Git repository 
+mkdir -p /ocslinux
+rsync -av root/ /ocslinux/
