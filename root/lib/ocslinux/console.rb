@@ -16,6 +16,10 @@ module OCSLinux
       puts " ]"
     end
 
+    def self.output_newline
+      print "\n"
+    end
+
   end
 
 end

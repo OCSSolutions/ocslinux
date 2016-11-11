@@ -13,16 +13,25 @@ require_relative "../lib/ocslinux/console.rb"
 
 include OCSLinux
 
+# Ensure hook is present
+print "Ensuring OCS Linux hook is present "
+
+unless File.exists?("/etc/apt/apt.conf.d/99-ocslinux-hook")
+  FileUtils.ln_s("/ocslinux/etc/apt/apt.conf.d/99-ocslinux-hook", "/etc/apt/apt.conf.d/99-ocslinux-hook", :force => true)
+end
+
+Console.output_ok
+
 # Install skeleton files
 print "Installing user default files "
 
-unless Dir.exists? "/etc/skel.debian"
-  system "mv /etc/skel /etc/skel.debian"
+unless Dir.exists?("/etc/skel.debian")
+  system("mv /etc/skel /etc/skel.debian")
 end
 
-FileUtils.ln_s "/ocslinux/etc/skel", "/etc/skel", :force => true
+FileUtils.ln_s("/ocslinux/etc/skel", "/etc/skel", :force => true)
 
 Console.output_ok
 
 # All done
-puts
+Console.output_newline
