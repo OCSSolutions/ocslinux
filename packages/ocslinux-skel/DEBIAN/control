@@ -1,9 +1,0 @@
-Source: ocslinux-skel
-Section: misc
-Priority: required
-Maintainer: Robert W. Oliver II <robert@jeweledwoods.com>
-Build-Depends: debhelper (>= 9)
-Package: ocslinux-skel
-Version: 0.1
-Architecture: all
-Description: The skeleton files for a new user in OCS Linux.
